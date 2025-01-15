@@ -1,11 +1,11 @@
-from sqlalchemy import Table,Column,ForeignKey,Integer,String,Float,Text,Enum
-from database.db import Base,engine
+# octogon_product.py
+from sqlalchemy import Table,Column,ForeignKey,Integer
+from database.db import Base
 
-
-# tabla intermedia
-# Tabla Octogono_Producto
-Octagon_Product = Table ('octagon_product',Base.metadata,
-    octagon_id = Column(Integer, ForeignKey("octagons.id") ,primary_key=True),
-    product_id = Column(Integer, ForeignKey("products.id") ,primary_key=True)
+Octagon_Product = Table (
+    'octagon_product',# Nombre de la tabla
+    Base.metadata, # Metadatos para SQLAlchemy
+    Column('octagon_id', Integer, ForeignKey("octagons.id"), primary_key=True),
+    Column('product_id', Integer, ForeignKey("products.id"), primary_key=True)
     )
  

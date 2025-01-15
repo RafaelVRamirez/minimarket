@@ -1,7 +1,7 @@
-from sqlalchemy import Column,ForeignKey,Integer,String,Float,Text,Enum
+from sqlalchemy import Column,ForeignKey,Integer,Date,Float,Text,Enum
 from sqlalchemy.orm import relationship
 from database.db import Base
-from datetime import datetime
+from datetime import date
 
 
 
@@ -10,7 +10,7 @@ class Credit_Amortization(Base):
     __tablename__= "credit_amortization"
 
     id = Column(Integer,primary_key=True,index=True,autoincrement="auto")
-    date_amortization = Column(datetime(), default=datetime.now)
+    date_amortization = Column(Date, default=date.today)
     amortization_amount = Column(Float, nullable=False)
     saldo = Column(Float, nullable=False)
     purchase_document_id = Column(Integer,ForeignKey("purchase_document.id"))

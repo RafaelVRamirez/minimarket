@@ -1,7 +1,7 @@
-from sqlalchemy import Column,ForeignKey,Integer,String,Float,Text,Enum
+from sqlalchemy import Column,ForeignKey,Integer,Date,Enum
 from sqlalchemy.orm import relationship
-from datetime import date, datetime
-from database.db import Base,engine
+from datetime import date
+from database.db import Base
 from utils.constants import *
 
 
@@ -13,6 +13,6 @@ class Inventory_Movement(Base):
     id = Column(Integer,primary_key=True,index=True,autoincrement="auto")
     type_movement = Column(Enum(TipoMovimiento), nullable=True)
     quantity = Column(Integer, nullable=False) # cantidad del producto en unidades que ingresa
-    movement_date = Column(datetime(), default=datetime.now) # fecha de movimiento, será la fecha del servidor
+    movement_date = Column(Date, default=date.today) # fecha de movimiento, será la fecha del servidor
     lote_id= Column(Integer, ForeignKey("lotes.id") ,nullable=False)
     lotes= relationship("Lote", back_populates="inventory_movements")

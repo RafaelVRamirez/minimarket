@@ -1,7 +1,7 @@
-from sqlalchemy import Table,Column,ForeignKey,Integer,String,Float,Text,Enum
+from sqlalchemy import Column,ForeignKey,Integer,String,Float,Date,Enum
 from sqlalchemy.orm import relationship
 from database.db import Base
-from datetime import date, datetime
+from datetime import date
 from utils.constants import *
 from models.purchase_detailt import purchase_detailt
 
@@ -15,11 +15,11 @@ class Purchase_Document(Base):
     total = Column(Float, nullable=False)
     igv = Column(Float, nullable=False)
     perception = Column(Float, nullable=False)
-    date_purchase = Column(datetime(), default=datetime.now)
+    date_purchase = Column(Date, default=date.today)
     method_of_payment = Column(Enum(FormaPago), nullable=False)
     payment_condition = Column(Enum(CondicionPago), nullable=False)
     payment_status = Column(Enum(EstadoPago), nullable=False)
-    supplier_id = Column(Integer,ForeignKey("supplieres.id"))
+    supplier_id = Column(Integer,ForeignKey("suppliers.id"))
     suppliers = relationship("Supplier", back_populates="purchase_document")
     product = relationship("Product", secondary=purchase_detailt, back_populates="purchase_document") # relacion muchos a muchos 
     credit_amortization = relationship("Credit_Amortization", back_populates="purchase_document")

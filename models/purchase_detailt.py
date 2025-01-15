@@ -1,15 +1,16 @@
-from sqlalchemy import Table,Column,ForeignKey,Integer,String,Float,Text,Enum
+from sqlalchemy import Table,Column,ForeignKey,Integer,Float
 from database.db import Base
 from utils.constants import *
 
 # tabla intermedia Dcomento compra y Productos
 # Tabla Products and Purchase_document
-purchase_detailt = Table ('purchase_detail',Base.metadata,
-    purchase_document_id = Column(Integer, ForeignKey("purchase_document.id") ,primary_key=True),
-    product_id = Column(Integer, ForeignKey("products.id") ,primary_key=True),
-    amount = Column(Integer, nullable=False), #cantidad
-    unit_price = Column(Float, nullable=False),
-    subtotal = Column(Float, nullable=False)
-
+purchase_detailt = Table (
+    'purchase_detail',
+    Base.metadata,
+    Column('purchase_document_id', Integer, ForeignKey("purchase_document.id"), primary_key=True),
+    Column('product_id', Integer, ForeignKey("products.id"), primary_key=True),
+    Column("amount", Float, nullable=False),
+    Column("unit_price", Float, nullable=False),
+    Column("subtotal", Float, nullable=False),
 
     )
