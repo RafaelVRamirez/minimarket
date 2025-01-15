@@ -6,10 +6,10 @@ from utils.constants import *
 
 # creando el modelo de la tabla IMAGENES PRODUCTO 
 # Relación de uno a muchos (un producto tiene 1 a muchas fotos, y una Foto pertenecea un solo producto)
-class Poduct_Image(Base): 
+class Product_Image(Base): 
     __tablename__= "products_image"
 
     id = Column(Integer,primary_key=True,index=True,autoincrement="auto")
     name = Column(String(13),nullable=False) # código del producto interno
     product_id= Column(Integer, ForeignKey("products.id") ,nullable=False) # Llave Foreana Id del producto
-    product = relationship("Product", back_populates="products_image")
+    products = relationship("Product", back_populates="products_image")

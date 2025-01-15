@@ -16,3 +16,4 @@ class Supplier(Base):
     phone = Column(String(12), nullable=False) # teléfono 
     state = Column(Enum(EstadoActivo), nullable=False) # estado del proveedor Ata o Baja
     sellers_suppliers = relationship("Seller_Supplier", back_populates="suppliers")
+    purchase_document = relationship("Purchase_Document", back_populates="suppliers")

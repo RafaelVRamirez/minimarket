@@ -1,7 +1,7 @@
-from sqlalchemy import Column,ForeignKey,Integer,String,Float,Text,Enum
+from sqlalchemy import Column,Integer,String
 from sqlalchemy.orm import relationship
-from database.db import Base,engine
-from utils.constants import *
+from database.db import Base
+
 
 
 #creando el modelo de la tabla Categoría (Category)
@@ -10,5 +10,5 @@ class Category(Base):
 
     id = Column(Integer,primary_key=True,index=True,autoincrement="auto")
     name = Column(String(50), nullable=False)
-    product = relationship("Product", back_populates="categories")
-    subcategory = relationship("Subcategory", back_populates="categories")
+    products = relationship("Product", back_populates="categories")
+    subcategories = relationship("Subcategory", back_populates="categories")

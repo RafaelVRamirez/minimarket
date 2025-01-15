@@ -13,5 +13,5 @@ class Seller_Supplier(Base):
     name = Column(String(50), nullable=False) # nombre o contacto del vendedor del proveedor
     phone = Column(String(12), nullable=False) # celular del vendedor
     supplier_id = Column(Integer,ForeignKey("suppliers.id")) 
-    supplier = relationship("Supplier", back_populates="sellers_suppliers")
+    suppliers = relationship("Supplier", back_populates="sellers_suppliers")
     state = Column(Enum(EstadoActivo), nullable=False) # Estado del vendedor del proveedor Alta o Baja

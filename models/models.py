@@ -4,30 +4,7 @@ from database.db import Base,engine
 from utils.constants import *
 
 
-  
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 # Crear las tablas en las bases de datos
-Base.metadata.create_all(bind=engine)
+

@@ -2,6 +2,8 @@ from sqlalchemy import Column,ForeignKey,Integer,String,Float,Text,Enum
 from sqlalchemy.orm import relationship
 from database.db import Base,engine
 from utils.constants import *
+from models.octagon_product import Octagon_Product
+from models.purchase_detailt import purchase_detailt
 
 #creando el modelo de la tabla PRODUCTO (Product)
 class Product(Base): 
@@ -13,9 +15,9 @@ class Product(Base):
     product_name = Column(Text(150), nullable=False) # nombre del producto
     product_description = Column(Text(250), nullable=False) # descripción del producto
     categorie_id = Column(Integer,ForeignKey("categories.id"))
-    category = relationship("Category", back_populates="products") 
+    categories = relationship("Category", back_populates="products") 
     subcategories_id = Column(Integer,ForeignKey("subcategories.id"))
-    subcategory = relationship("Subacategory", back_populates="products")
+    subcategories = relationship("Subacategory", back_populates="products")
     product_type = Column(String(20),nullable=False) # arroz, azucar, atun, leche, galleta
     presentation_type = Column(String(13),nullable=False) # display, sachet, lata, botella, pquete
     weight_and_measure = Column(String(10),nullable=False) # Peso y unid de medida Ej. 50 gr, 500 ml, 1 kg
@@ -24,6 +26,8 @@ class Product(Base):
     price_costo = Column(Float,default=0.00) # precio costo
     price_sale = Column(Float,default=0.00) # precio venta
     state = Column(Enum(EstadoProducto), nullable=False) # Estado del producto Alta, Baja, Agotado
-    product_image = relationship("Product_Image", back_populates="products")
-    octagons = relationship("Octagon", secondary="octagons_products", back_populates="products") # relacion muchos a muchos 
+    products_image = relationship("Product_Image", back_populates="products")
+    octagons = relationship("Octagon", secondary=Octagon_Product, back_populates="product") # relacion muchos a muchos 
+    lotes= relationship("Lote", back_populates="products")
+    purchase_document = relationship("Purchase_Document", secondary=purchase_detailt, back_populates="product") # relacion muchos a muchos 
 

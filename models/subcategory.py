@@ -11,5 +11,5 @@ class Subcategory(Base):
     id = Column(Integer,primary_key=True,index=True,autoincrement="auto")
     name = Column(String(200), nullable=False)
     category_id = Column(Integer,ForeignKey("categories.id"))
-    category = relationship("Category", back_populates="subcategories")
-    product = relationship("Product", back_populates="subcategories")
+    categories = relationship("Category", back_populates="subcategories")
+    products = relationship("Product", back_populates="subcategories")

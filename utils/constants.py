@@ -23,4 +23,19 @@ class CondicionPago(PyEnum):
     CONTADO = "Contado"
     CREDITO = "Crédito"
 
+class TipoMovimiento(PyEnum):
+    INGRESO = "Ingreso"
+    SALIDA = "Salida"
 
+
+class TipoDocumento(PyEnum):
+    FACTURA = "Factura"
+    BOLETA_VENTA = "Boleta de Venta"
+    TICKETS = "Ticket"
+    MERCADO = "Mercado"
+    LIQUIDACIÓN_DE_COMPRA = "Liquidación de compra"
+
+class EstadoPago(PyEnum):
+    PAGADO = "Pagado"
+    PENDIENTE = "Pendiente"
+    PARCIAL = "Parcial"
