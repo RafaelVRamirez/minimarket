@@ -39,3 +39,9 @@ class EstadoPago(PyEnum):
     PAGADO = "Pagado"
     PENDIENTE = "Pendiente"
     PARCIAL = "Parcial"
+
+class DocumentoCliente(PyEnum):
+    DNI = "DNI"
+    RUC = "RUC"
+    CE = "CE"
+

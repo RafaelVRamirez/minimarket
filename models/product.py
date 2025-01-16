@@ -4,6 +4,7 @@ from database.db import Base
 from utils.constants import *
 from models.octagon_product import Octagon_Product
 from models.purchase_detailt import purchase_detailt
+from models.order_detail import order_detailt
 
 #creando el modelo de la tabla PRODUCTO (Product)
 class Product(Base): 
@@ -30,5 +31,5 @@ class Product(Base):
     octagons = relationship("Octagon", secondary=Octagon_Product, back_populates="product") # relacion muchos a muchos 
     lotes= relationship("Lote", back_populates="products")
     purchase_document = relationship("Purchase_Document", secondary=purchase_detailt, back_populates="product") # relacion muchos a muchos 
-    
+    orders =relationship("Order", secondary=order_detailt, back_populates="product")
 

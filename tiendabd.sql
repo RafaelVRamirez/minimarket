@@ -263,8 +263,7 @@ CREATE TABLE IF NOT EXISTS `mydb`.`Pedido` (
   `dCliente` INT NOT NULL,
   `fechaPedido` DATE NOT NULL,
   `tipoDePago` VARCHAR(45) NOT NULL,
-  `estado` VARCHAR(45) NOT NULL,
-  PRIMARY KEY (`idPedido`),
+   PRIMARY KEY (`idPedido`),
   INDEX `fk_Pedido_Cliente1_idx` (`dCliente` ASC) VISIBLE,
   CONSTRAINT `fk_Pedido_Cliente1`
     FOREIGN KEY (`dCliente`)
