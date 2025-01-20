@@ -2,7 +2,7 @@ from sqlalchemy import Column,ForeignKey,Integer,String,Float,Text,Enum
 from sqlalchemy.orm import relationship
 from database.db import Base
 from utils.constants import *
-from models.octagon_product import Octagon_Product
+from models.ocCategoryon_product import OcCategoryon_Product
 from models.purchase_detailt import purchase_detailt
 from models.order_detail import order_detailt
 
@@ -28,7 +28,7 @@ class Product(Base):
     price_sale = Column(Float,default=0.00) # precio venta
     state = Column(Enum(EstadoProducto), nullable=False) # Estado del producto Alta, Baja, Agotado
     products_image = relationship("Product_Image", back_populates="products")
-    octagons = relationship("Octagon", secondary=Octagon_Product, back_populates="product") # relacion muchos a muchos 
+    ocCategoryons = relationship("OcCategoryon", secondary=OcCategoryon_Product, back_populates="product") # relacion muchos a muchos 
     lotes= relationship("Lote", back_populates="products")
     purchase_document = relationship("Purchase_Document", secondary=purchase_detailt, back_populates="product") # relacion muchos a muchos 
     orders =relationship("Order", secondary=order_detailt, back_populates="product")
