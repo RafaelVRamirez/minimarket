@@ -19,17 +19,17 @@ def get_category_by_name(db: Session, name: str):
   return db.query(Category).filter(func.upper(Category.name)==func.upper(name)).first()
 
 # Crear un Category
-def create_Category(db: Session, Category: CategoryCreate):
-  db_Category = Category(name=Category.name)
+def create_Category(db: Session, category: CategoryCreate):
+  db_Category = Category(name=category.name)
   db.add(db_Category)
   db.commit()
   db.refresh(db_Category)
   return db_Category
 
 # Update de un Category
-def update_Category(db: Session, id: int, Category: CategoryCreate):
+def update_Category(db: Session, id: int, category: CategoryCreate):
   db_Category = db.query(Category).filter(Category.id == id).first()
-  db_Category.name = Category.name
+  db_Category.name = category.name
   db.commit()
   db.refresh(db_Category)
   return db_Category

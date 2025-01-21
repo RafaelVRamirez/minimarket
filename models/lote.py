@@ -17,4 +17,4 @@ class Lote(Base):
     stock = Column(Integer, nullable=False) # stock actual con los ingresos que se realiza 
     product_id= Column(Integer, ForeignKey("products.id") ,nullable=False)
     products= relationship("Product", back_populates="lotes")
-    inventory_movements= relationship("Inventory_Movements", back_populates="lotes")
+    inventory_movements= relationship("Inventory_Movement", back_populates="lotes")

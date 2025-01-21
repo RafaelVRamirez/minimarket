@@ -2,7 +2,6 @@ from sqlalchemy import Column,ForeignKey,Integer,String,Float,Text,Enum
 from sqlalchemy.orm import relationship
 from database.db import Base
 from utils.constants import *
-from models.ocCategoryon_product import OcCategoryon_Product
 from models.purchase_detailt import purchase_detailt
 from models.order_detail import order_detailt
 
@@ -18,7 +17,7 @@ class Product(Base):
     categorie_id = Column(Integer,ForeignKey("categories.id"))
     categories = relationship("Category", back_populates="products") 
     subcategories_id = Column(Integer,ForeignKey("subcategories.id"))
-    subcategories = relationship("Subacategory", back_populates="products")
+    subcategories = relationship("Subcategory", back_populates="products")
     product_type = Column(String(20),nullable=False) # arroz, azucar, atun, leche, galleta
     presentation_type = Column(String(13),nullable=False) # display, sachet, lata, botella, pquete
     weight_and_measure = Column(String(10),nullable=False) # Peso y unid de medida Ej. 50 gr, 500 ml, 1 kg
@@ -28,7 +27,6 @@ class Product(Base):
     price_sale = Column(Float,default=0.00) # precio venta
     state = Column(Enum(EstadoProducto), nullable=False) # Estado del producto Alta, Baja, Agotado
     products_image = relationship("Product_Image", back_populates="products")
-    ocCategoryons = relationship("OcCategoryon", secondary=OcCategoryon_Product, back_populates="product") # relacion muchos a muchos 
     lotes= relationship("Lote", back_populates="products")
     purchase_document = relationship("Purchase_Document", secondary=purchase_detailt, back_populates="product") # relacion muchos a muchos 
     orders =relationship("Order", secondary=order_detailt, back_populates="product")

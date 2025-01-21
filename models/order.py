@@ -15,6 +15,6 @@ class Order(Base):
     customer_id = Column(Integer, ForeignKey("customers.id") ,nullable=False)
     customers = relationship("Customer", back_populates="orders")
     product = relationship("Product", secondary=order_detailt, back_populates="orders")
-    customer_amortization_id = relationship("Customer_Amortization", back_populates="orders")
+    customer_amortization = relationship("Custoner_Amortization", back_populates="orders")
 
 
