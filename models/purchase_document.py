@@ -19,7 +19,7 @@ class Purchase_Document(Base):
     method_of_payment = Column(Enum(FormaPago), nullable=False)
     payment_condition = Column(Enum(CondicionPago), nullable=False)
     payment_status = Column(Enum(EstadoPago), nullable=False)
-    supplier_id = Column(Integer,ForeignKey("suppliers.id"))
+    supplier_id = Column(Integer,ForeignKey("suppliers.id"), nullable=False)
     suppliers = relationship("Supplier", back_populates="purchase_document")
     product = relationship("Product", secondary=purchase_detailt, back_populates="purchase_document") # relacion muchos a muchos 
     credit_amortization = relationship("Credit_Amortization", back_populates="purchase_document")

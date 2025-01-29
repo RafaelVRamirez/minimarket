@@ -13,7 +13,7 @@ class Credit_Amortization(Base):
     date_amortization = Column(Date, default=date.today)
     amortization_amount = Column(Float, nullable=False)
     saldo = Column(Float, nullable=False)
-    purchase_document_id = Column(Integer,ForeignKey("purchase_document.id"))
+    purchase_document_id = Column(Integer,ForeignKey("purchase_document.id"), nullable=False)
     purchase_document = relationship("Purchase_Document", back_populates="credit_amortization") 
 
    

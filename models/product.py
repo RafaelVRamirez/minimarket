@@ -4,6 +4,7 @@ from database.db import Base
 from utils.constants import *
 from models.purchase_detailt import purchase_detailt
 from models.order_detail import order_detailt
+from models.octagon_product import Octagon_Product
 
 #creando el modelo de la tabla PRODUCTO (Product)
 class Product(Base): 
@@ -14,9 +15,9 @@ class Product(Base):
     barcode = Column(String(13),nullable=False) # código de barras
     product_name = Column(Text(150), nullable=False) # nombre del producto
     product_description = Column(Text(250), nullable=False) # descripción del producto
-    categorie_id = Column(Integer,ForeignKey("categories.id"))
+    categorie_id = Column(Integer,ForeignKey("categories.id"), nullable=False)
     categories = relationship("Category", back_populates="products") 
-    subcategories_id = Column(Integer,ForeignKey("subcategories.id"))
+    subcategories_id = Column(Integer,ForeignKey("subcategories.id"), nullable=False)
     subcategories = relationship("Subcategory", back_populates="products")
     product_type = Column(String(20),nullable=False) # arroz, azucar, atun, leche, galleta
     presentation_type = Column(String(13),nullable=False) # display, sachet, lata, botella, pquete
@@ -24,10 +25,11 @@ class Product(Base):
     existence = Column(Integer) # stock actual (existencias)
     minimum_stock = Column(Integer) # stock mínimo
     price_costo = Column(Float,default=0.00) # precio costo
+    profit_margin = Column(Float, default=0.00) # margen de ganancia
     price_sale = Column(Float,default=0.00) # precio venta
     state = Column(Enum(EstadoProducto), nullable=False) # Estado del producto Alta, Baja, Agotado
     products_image = relationship("Product_Image", back_populates="products")
     lotes= relationship("Lote", back_populates="products")
     purchase_document = relationship("Purchase_Document", secondary=purchase_detailt, back_populates="product") # relacion muchos a muchos 
     orders =relationship("Order", secondary=order_detailt, back_populates="product")
-
+    octagons = relationship("Octagon", secondary=Octagon_Product, back_populates="products")

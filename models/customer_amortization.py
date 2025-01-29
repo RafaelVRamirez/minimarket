@@ -13,7 +13,7 @@ class Custoner_Amortization(Base):
     date_amortization = Column(Date, default=date.today)
     amortization_amount = Column(Float, nullable=False)
     saldo = Column(Float, nullable=False)
-    order_id = Column(Integer,ForeignKey("orders.id"))
+    order_id = Column(Integer,ForeignKey("orders.id"),nullable=False)
     orders = relationship("Order", back_populates="customer_amortization") 
 
    

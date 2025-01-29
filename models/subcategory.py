@@ -10,6 +10,6 @@ class Subcategory(Base):
 
     id = Column(Integer,primary_key=True,index=True,autoincrement="auto")
     name = Column(String(200), nullable=False)
-    category_id = Column(Integer,ForeignKey("categories.id"))
+    category_id = Column(Integer,ForeignKey("categories.id"), nullable=False)
     categories = relationship("Category", back_populates="subcategories")
     products = relationship("Product", back_populates="subcategories")

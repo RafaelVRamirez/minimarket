@@ -7,8 +7,8 @@ from utils.constants import *
 purchase_detailt = Table (
     'purchase_detail',
     Base.metadata,
-    Column('purchase_document_id', Integer, ForeignKey("purchase_document.id"), primary_key=True),
-    Column('product_id', Integer, ForeignKey("products.id"), primary_key=True),
+    Column('purchase_document_id', Integer, ForeignKey("purchase_document.id",), primary_key=True, nullable=False),
+    Column('product_id', Integer, ForeignKey("products.id"), primary_key=True, nullable=False),
     Column("amount", Float, nullable=False),
     Column("unit_price", Float, nullable=False),
     Column("subtotal", Float, nullable=False),

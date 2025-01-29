@@ -10,6 +10,7 @@ class Product_Image(Base):
     __tablename__= "products_image"
 
     id = Column(Integer,primary_key=True,index=True,autoincrement="auto")
-    imagen = Column(String(45),nullable=False) # código del producto interno
+    name = Column(String(45),nullable=False) # nombre de la imagen del producto
+    imagen = Column(String(45),nullable=False) # imagen con extensión .jpg .png
     product_id= Column(Integer, ForeignKey("products.id") ,nullable=False) # Llave Foreana Id del producto
     products = relationship("Product", back_populates="products_image")
