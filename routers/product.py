@@ -13,9 +13,9 @@ def read_products(skip: int = 0, limit: int = 100, db: Session = Depends(get_db)
     return {"products": products}
 
 # buscar por ID de un producto
-@router.get("/{product_id}", response_model=ProductResponse)
-def read_product(product_id: int, db: Session = Depends(get_db)):
-    product = get_product(db, product_id=product_id)
+@router.get("/{id}", response_model=ProductResponse)
+def read_product(id: int, db: Session = Depends(get_db)):
+    product = get_product(db, id=id)
     if not product:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Product not found")
     return product
@@ -41,18 +41,18 @@ def create_new_product(product: ProductCreate, db: Session = Depends(get_db)):
 
 
 # ruta de actualizar un producto, todos sus atributos o algun producto
-@router.patch("/{product_id}", response_model=ProductResponse)
-def update_existing_product(product_id: int, product: ProductUpdate, db: Session = Depends(get_db)):
-    updated_product = update_product(db, product_id=product_id, product=product)
+@router.patch("/{id}", response_model=ProductResponse)
+def update_existing_product(id: int, product: ProductUpdate, db: Session = Depends(get_db)):
+    updated_product = update_product(db, id=id, product=product)
     if not updated_product:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Product not found")
     return updated_product
 
 
 # ruta de eliminación de un producto por su ID
-@router.delete("/{product_id}", response_model=ProductResponse)
-def delete_existing_product(product_id: int, db: Session = Depends(get_db)):
-    deleted_product = delete_product(db, product_id=product_id)
+@router.delete("/{id}", response_model=ProductResponse)
+def delete_existing_product(id: int, db: Session = Depends(get_db)):
+    deleted_product = delete_product(db, id=id)
     if not deleted_product:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Product not found")
     return deleted_product

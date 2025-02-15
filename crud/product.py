@@ -24,8 +24,8 @@ def generate_next_product_code(db: Session) -> str:
 
 
 # busca por ID del producto
-def get_product(db: Session, product_id: int):
-    return db.query(Product).filter(Product.id == product_id).first()
+def get_product(db: Session, id: int):
+    return db.query(Product).filter(Product.id == id).first()
 
 # busca todos los productos
 def get_products(db: Session, skip: int = 0, limit: int = 100):
@@ -70,9 +70,9 @@ def create_product(db: Session, product: ProductCreate):
 
 # INICIO CRUD DE ACTUALIZAR
 # actualiza la tabla productos
-def update_product(db: Session, product_id: int, product: ProductUpdate):
+def update_product(db: Session, id: int, product: ProductUpdate):
     # Buscar el producto por su ID
-    db_product = db.query(Product).filter(Product.id == product_id).first()
+    db_product = db.query(Product).filter(Product.id == id).first()
 
     # Si no se encuentra el producto, devolver None
     if not db_product:
@@ -93,8 +93,8 @@ def update_product(db: Session, product_id: int, product: ProductUpdate):
 # FN CRUD DE ACTUALIZAR
 
 # elimna un producto por su id
-def delete_product(db: Session, product_id: int):
-    db_product = db.query(Product).filter(Product.id == product_id).first()
+def delete_product(db: Session, id: int):
+    db_product = db.query(Product).filter(Product.id == id).first()
     if db_product:
         db.delete(db_product)
         db.commit()
