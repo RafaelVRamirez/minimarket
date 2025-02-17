@@ -1,6 +1,7 @@
 from sqlalchemy.orm import Session
 from models.seller_supplier import Seller_Supplier
 from schemas.seller_supplier import SellerSupplierCreate,SellerSupplierUpdate
+from utils.formats import formatear_nombre_completo
 
 # buscar por ID
 def get_seller_supplier(db:Session, id:int):
@@ -13,7 +14,7 @@ def get_sellers_supplieres(db:Session, skip: int = 0, limit: int = 100):
 # creacion de vendedor del proveedor
 def create_seller_supplier(db:Session, seller_supplier=SellerSupplierCreate):
     db_seller_supplier = Seller_Supplier(
-        name = seller_supplier.name,
+        name = formatear_nombre_completo(seller_supplier.name),
         phone = seller_supplier.phone,
         supplier_id = seller_supplier.supplier_id,
         state = seller_supplier.state,

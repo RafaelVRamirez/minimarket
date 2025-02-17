@@ -15,7 +15,7 @@ class Customer(Base):
     number_document = Column(String(12), nullable=True)
     phone = Column(String(15), nullable=False)
     date_of_birth = Column(Date, nullable=False) # fecha de nacimiento
-    credit_amount = Column(Float, nullable=True) # mon de credito por cliente, no todos tienen credito
+    credit_amount = Column(Float, nullable=True) # monto de credito por cliente, no todos tienen credito
     address = Column(String(150),nullable=False) # dirección
     registration_date = Column(Date, default=date.today) # fecha de registro
     orders = relationship("Order", back_populates="customers")

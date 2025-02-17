@@ -2,11 +2,12 @@ from sqlalchemy.orm import Session
 from models.octagon import Octagon
 from schemas.octagon import OctagonCreate
 import os
+from utils.formats import formatear_nombre_completo
 
 
 # Crear una nueva imagen
 def create_octagon(db: Session, octagon_data: OctagonCreate):
-    db_image = Octagon(name=octagon_data.name,imagen=octagon_data.imagen)
+    db_image = Octagon(name= formatear_nombre_completo(octagon_data.name),imagen=octagon_data.imagen)
     db.add(db_image)
     db.commit()
     db.refresh(db_image)

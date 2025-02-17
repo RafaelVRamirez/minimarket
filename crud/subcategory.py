@@ -2,6 +2,7 @@ from sqlalchemy.orm import Session
 from models.subcategory import Subcategory
 from schemas.subcategory import SubCategoryCreate
 from sqlalchemy import func
+from utils.formats import formatear_nombre_completo
 
 
 # Obtenemos todas las subcategorías
@@ -24,7 +25,7 @@ def get_subcategory_by_name(db: Session, name: str):
 
 # Crear uns Subcategory
 def create_Subcategory(db: Session, subcat: SubCategoryCreate):
-  db_subCat = Subcategory(name=subcat.name, category_id=subcat.category_id)
+  db_subCat = Subcategory(name=formatear_nombre_completo(subcat.name), category_id=subcat.category_id)
   db.add(db_subCat)
   db.commit()
   db.refresh(db_subCat)

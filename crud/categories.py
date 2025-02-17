@@ -2,6 +2,7 @@ from sqlalchemy.orm import Session
 from models.category import Category
 from schemas.category import CategoryCreate
 from sqlalchemy import func
+from utils.formats import formatear_nombre_completo
 
 
 # Obtenemos todas las categorías
@@ -20,7 +21,7 @@ def get_category_by_name(db: Session, name: str):
 
 # Crear un Category
 def create_Category(db: Session, category: CategoryCreate):
-  db_Category = Category(name=category.name)
+  db_Category = Category(name= formatear_nombre_completo(category.name))
   db.add(db_Category)
   db.commit()
   db.refresh(db_Category)
